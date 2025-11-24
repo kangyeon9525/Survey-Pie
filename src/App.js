@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import ProgressIndicator from './components/ProgressIndicator';
 import QuestionsBox from './components/QuestionBox';
 
@@ -19,12 +21,26 @@ function App() {
     },
   ];
 
-  const step = 0;
+  const step = 1;
+
+  const [answers, setAnswers] = useState([]);
 
   return (
     <div className="App">
       <ProgressIndicator />
-      <QuestionsBox question={questions[step]} />
+      <QuestionsBox
+        question={questions[step]}
+        questionsLength={questions.length}
+        step={step}
+        answer={answers[step]}
+        setAnswer={(newAnswer) => {
+          setAnswers((answers) => {
+            const newAnswers = [...answers];
+            newAnswers[step] = newAnswer;
+            return newAnswers;
+          });
+        }}
+      />
     </div>
   );
 }
