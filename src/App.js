@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 import ProgressIndicator from './components/ProgressIndicator';
 import QuestionsBox from './components/QuestionBox';
+import PageA from './pages/pageA';
+import PageB from './pages/pageB';
 
 function App() {
   const questions = [
@@ -27,6 +30,7 @@ function App() {
 
   return (
     <div className="App">
+      {/*
       <ProgressIndicator />
       <QuestionsBox
         question={questions[step]}
@@ -40,7 +44,12 @@ function App() {
             return newAnswers;
           });
         }}
-      />
+      />*/}
+      <div>Hello World!</div>
+      <Routes>
+        <Route path="/" element={<PageA />} />
+        <Route path="/2" element={<PageB />} />
+      </Routes>
     </div>
   );
 }
