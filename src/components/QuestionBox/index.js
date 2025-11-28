@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 import ActionButtons from '../ActionButtons';
 import Body from '../Body';
 import Desc from '../Desc';
@@ -5,7 +7,7 @@ import Title from '../Title';
 
 function QuestionsBox({ question, questionsLength, step, answer, setAnswer }) {
   return (
-    <div>
+    <QuestionsBoxWrapper>
       <Title>{question.title}</Title>
       <Desc>{question.desc}</Desc>
       <Body
@@ -15,8 +17,14 @@ function QuestionsBox({ question, questionsLength, step, answer, setAnswer }) {
         options={question.options}
       />
       <ActionButtons questionsLength={questionsLength} step={step} />
-    </div>
+    </QuestionsBoxWrapper>
   );
 }
+
+const QuestionsBoxWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
 
 export default QuestionsBox;
