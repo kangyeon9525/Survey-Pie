@@ -1,9 +1,20 @@
+import { useAtomValue } from 'jotai';
 import styled from 'styled-components';
+
+import testState from '../../stores/test/atom';
+import testWithComma from '../../stores/test/testWithComma';
 
 const a = 123;
 
 function CompletionPage() {
-  return <CompletionPageWrapper>CompletionPage</CompletionPageWrapper>;
+  const test1 = useAtomValue(testState);
+  const test2 = useAtomValue(testWithComma);
+
+  return (
+    <CompletionPageWrapper>
+      {test1} {test2}
+    </CompletionPageWrapper>
+  );
 }
 
 const CompletionPageWrapper = styled.div`
