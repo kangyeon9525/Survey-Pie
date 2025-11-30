@@ -1,31 +1,16 @@
-import { useAtom, useAtomValue } from 'jotai';
-import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import answersState from '../../stores/answers/atom';
-import questionsState from '../../stores/questions/atom';
+import useCurrentAnswer from '../../hooks/useCurrentAnswer';
+import useCurrentQuestion from '../../hooks/useCurrentQuestoin';
 import ActionButtons from '../ActionButtons';
 import Body from '../Body';
 import Desc from '../Desc';
 import Title from '../Title';
 
 function QuestionsBox() {
-  const params = useParams();
+  const [answer, setAnswer] = useCurrentAnswer();
+  const question = useCurrentQuestion();
 
-  const step = parseInt(params.step);
-  const questions = useAtomValue(questionsState); // useRecoilValue
-  const [answers, setAnswers] = useAtom(answersState); // useRecoilState
-
-  const question = questions[step];
-  const answer = answers[step];
-  const setAnswer = (newAnswer) => {
-    setAnswers((answers) => {
-      const newAnswers = [...answers];
-      newAnswers[step] = newAnswer;
-
-      return newAnswers;
-    });
-  };
   return (
     <QuestionsBoxWrapper>
       <Title>{question.title}</Title>
