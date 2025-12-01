@@ -1,11 +1,10 @@
-import axios from 'axios';
 import { atom } from 'jotai';
+
+import getSurvey from '../../services/getSurvey';
 
 const surveyState = atom(async (get) => {
   // selector
-  const res = await axios.get(
-    `http://localhost:3001/surveys/${window.location.pathname.split('/')[2]}`,
-  );
+  const res = await getSurvey(window.location.pathname.split('/')[2]);
 
   return res.data;
 });

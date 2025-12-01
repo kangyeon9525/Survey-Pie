@@ -2,10 +2,11 @@ import { atom } from 'jotai';
 
 import surveyState from './surveyState';
 
-const questionsLengthState = atom((get) => {
+const questionsLengthState = atom(async (get) => {
   // selector
-  const survey = get(surveyState);
+  const survey = await get(surveyState);
   const questions = survey?.questions || [];
+
   return questions.length;
 });
 

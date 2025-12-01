@@ -2,16 +2,22 @@ import { useAtomValue } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+import useAnswers from '../../hooks/useAnswers';
 import useStep from '../../hooks/useStep';
+import useSurveyId from '../../hooks/useSurveyId';
+import postAnswers from '../../services/postAnswers';
 import questionsLengthState from '../../stores/survey/quetionsLengthState';
 import Button from '../Button';
 
 function ActionButtons() {
   const step = useStep();
+  const surveyId = useSurveyId();
+  const answers = useAnswers();
   const questionsLength = useAtomValue(questionsLengthState); // useRecoilValue
 
   const isLast = questionsLength - 1 === step;
   const navigate = useNavigate();
+
   return (
     <ActionButtonsWrapper>
       {step === 0 || (
@@ -28,6 +34,7 @@ function ActionButtons() {
         <Button
           type="PRIMARY"
           onClick={() => {
+            postAnswers(surveyId, answers);
             navigate('/done');
           }}
         >
