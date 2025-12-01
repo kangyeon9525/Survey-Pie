@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useAtomValue } from 'jotai';
 import styled from 'styled-components';
 
@@ -10,6 +11,9 @@ function CompletionPage() {
   const test1 = useAtomValue(testState);
   const test2 = useAtomValue(testWithComma);
 
+  axios.get('http://localhost:3001/surveys').then((res) => {
+    console.log('res', res);
+  });
   return (
     <CompletionPageWrapper>
       {test1} {test2}

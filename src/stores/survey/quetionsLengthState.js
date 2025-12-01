@@ -1,10 +1,11 @@
 import { atom } from 'jotai';
 
-import questionsState from './atom';
+import surveyState from './surveyState';
 
 const questionsLengthState = atom((get) => {
   // selector
-  const questions = get(questionsState);
+  const survey = get(surveyState);
+  const questions = survey?.questions || [];
   return questions.length;
 });
 

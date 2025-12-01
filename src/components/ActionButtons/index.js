@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import useStep from '../../hooks/useStep';
-import questionsLengthState from '../../stores/questions/quetionsLengthState';
+import questionsLengthState from '../../stores/survey/quetionsLengthState';
 import Button from '../Button';
 
 function ActionButtons() {
