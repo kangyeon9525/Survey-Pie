@@ -9,11 +9,12 @@ function TextAreaInput({ answer = '', setAnswer, options }) {
         setAnswer(e.target.value);
       }}
       placeholder={options.placeholder}
+      {...(options?.max && { maxLength: options?.max })}
     />
   );
 }
 
-const TextArea = styled.input`
+const TextArea = styled.textarea`
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
   border-radius: 5px;

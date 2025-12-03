@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import useAnswers from '../../hooks/useAnswers';
+import useRequiredOptions from '../../hooks/useRequiredOption';
 import useStep from '../../hooks/useStep';
 import useSurveyId from '../../hooks/useSurveyId';
 import postAnswers from '../../services/postAnswers';
@@ -16,9 +17,11 @@ function ActionButtons() {
   const answers = useAnswers();
   const [isPosting, setIsPosting] = useState(false);
   const questionsLength = useAtomValue(questionsLengthState); // useRecoilValue
+  const isRequired = useRequiredOptions();
 
   const isLast = questionsLength - 1 === step;
   const navigate = useNavigate();
+  const isBlockToNext = isRequired ? !answers[step]?.length : false;
 
   return (
     <ActionButtonsWrapper>
@@ -47,7 +50,7 @@ function ActionButtons() {
                 setIsPosting(false);
               });
           }}
-          disabled={isPosting}
+          disabled={isPosting || isBlockToNext}
         >
           {isPosting ? '제출 중입니다...' : '제출'}
         </Button>
@@ -57,6 +60,7 @@ function ActionButtons() {
           onClick={() => {
             navigate(`${step + 1}`);
           }}
+          disabled={isBlockToNext}
         >
           다음
         </Button>
