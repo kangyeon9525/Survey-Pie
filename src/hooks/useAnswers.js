@@ -1,9 +1,9 @@
-import { useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
 
 import answersState from '../stores/answers/atom';
 
 function useAnswers() {
-  return useAtomValue(answersState); // useRecoilValue
+  return useAtom(answersState); // useRecoilState
 }
 
 export default useAnswers;
